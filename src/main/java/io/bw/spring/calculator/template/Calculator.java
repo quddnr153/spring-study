@@ -11,34 +11,19 @@ import java.io.IOException;
  */
 public class Calculator {
     public Integer calculateSum(String filePath) throws IOException {
-        LineCallback<Integer> sumCallback = new LineCallback<Integer>() {
-            @Override
-            public Integer doSomethingWithLine(String line, Integer value) {
-                return value + Integer.valueOf(line);
-            }
-        };
+        LineCallback<Integer> sumCallback = ((line, value) -> value + Integer.valueOf(line));
 
         return lineReadTemplate(filePath, sumCallback, 0);
     }
 
     public Integer calculateMultiply(String filePath) throws IOException {
-        LineCallback<Integer> multiplyCallback = new LineCallback<Integer>() {
-            @Override
-            public Integer doSomethingWithLine(String line, Integer value) {
-                return value * Integer.valueOf(line);
-            }
-        };
+        LineCallback<Integer> multiplyCallback = ((line, value) -> value * Integer.valueOf(line));
 
         return lineReadTemplate(filePath, multiplyCallback, 1);
     }
 
     public String concatenate(String filePath) throws IOException {
-        LineCallback<String> concatenateCallback = new LineCallback<String>() {
-            @Override
-            public String doSomethingWithLine(String line, String value) {
-                return value + line;
-            }
-        };
+        LineCallback<String> concatenateCallback = ((line, value) -> value + line);
 
         return lineReadTemplate(filePath, concatenateCallback, "");
     }
